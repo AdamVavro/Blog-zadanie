@@ -1,6 +1,6 @@
 import { getBlogs } from '../lib/api';
 import Link from 'next/link';
-import { formatDate, getExcerpt } from '../lib/utils';
+import { formatDate } from '../lib/utils';
 
 //Načíta dáta z API, vráti objekt s props, ktoré budú poslané do komponentu Home
 export async function getServerSideProps({ query }) {
@@ -50,12 +50,19 @@ export default function Home({ blogs, currentPage, totalPages }) {
     return pages;
   };
 
+  const formatCategories = (category) => {
+    if (!category) {
+        return '';
+    }
+    return `#${category}`;
+  };
+
   return (
     <div>
 
       <h1>Blog</h1>
 
-      <p>Number of links: {blogs.length}</p>
+      {/* <p>Number of links: {blogs.length}</p> */}
 
       <ul>
         {blogs.map((blog) => (
@@ -63,11 +70,13 @@ export default function Home({ blogs, currentPage, totalPages }) {
             <Link href={`/posts/${blog.id}?page=${currentPage}`}>
             {blog.title} ({formatDate(blog.created_at)})
             </Link>
-            <p>{getExcerpt(blog.main_content)}</p>
+            <p>{blog.summary}</p>
+            <p>{formatCategories(blog.category)}</p>
           </li>
         ))}
       </ul>
 
+        {/* stránkovanie */}
        <div>
         {currentPage !== 1 && <Link href={`/?page=1`}>First</Link>}    
         {currentPage > 1 && (
