@@ -24,11 +24,33 @@ export default function Post({ blog }) {
     return <div>Blog not found</div>;
   }
 
+  const extractContent = (content) => {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = content;
+
+    const h1 = tempDiv.querySelector('h1');
+    const h1Content = h1 ? h1.outerHTML : '';
+
+    if (h1) {
+        h1.remove();
+    }
+
+    const restContent = tempDiv.innerHTML.trim();
+
+    return {
+        h1Content,
+        restContent,
+    };
+  };
+
+  const { h1Content, restContent } = extractContent(blog.main_content);
+
    return (
     <div>
-      <h1>{blog.title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: h1Content }} />
+      <img src={blog.featured_image} alt={blog.title} />
+      <div dangerouslySetInnerHTML={{ __html: restContent }} />
       <p>Published: {formatDate(blog.created_at)}</p>
-      <div dangerouslySetInnerHTML={{ __html: blog.main_content }} />
       <Link href="/">Home</Link>
       <Link href={`/?page=${page}`}>Back</Link>
     </div>
