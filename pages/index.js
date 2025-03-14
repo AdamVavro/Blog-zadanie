@@ -60,7 +60,7 @@ export default function Home({ blogs, currentPage, totalPages }) {
       <ul>
         {blogs.map((blog) => (
           <li key={blog.id}>
-            <Link href={`/posts/${blog.id}`}>
+            <Link href={`/posts/${blog.id}?page=${currentPage}`}>
             {blog.title} ({formatDate(blog.created_at)})
             </Link>
             <p>{getExcerpt(blog.main_content)}</p>
