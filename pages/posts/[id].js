@@ -1,5 +1,6 @@
 import { getBlog } from '../../lib/api';
 import { formatDate } from '../../lib/utils';
+import Link from 'next/link';
 
 //Načíta detail článku z API, vráti objekt s props, ktoré budú poslané do komponentu Post
 export async function getServerSideProps({ params }) {
@@ -25,6 +26,7 @@ export default function Post({ blog }) {
       <h1>{blog.title}</h1>
       <p>Published: {formatDate(blog.created_at)}</p>
       <div dangerouslySetInnerHTML={{ __html: blog.main_content }} />
+      <Link href="/">Home</Link>
     </div>
   );
 }
