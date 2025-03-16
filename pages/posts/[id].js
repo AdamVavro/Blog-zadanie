@@ -56,10 +56,10 @@ export default function Post({ blog }) {
           <nav>
             <div className="hidden md:flex items-center">
               <div className="ml-4 md:ml-8">
-                <Link href="/" className="hover:text-gray-600">Home</Link>
+                <Link href="/" className="hover:text-gray-900">Home</Link>
               </div>
               <div className="ml-4 md:ml-8">
-                <Link href={`/?page=${page}`} className="hover:text-gray-600">Back</Link>
+                <Link href={`/?page=${page}`} className="hover:text-gray-900">Back</Link>
               </div>
             </div>
           </nav>
