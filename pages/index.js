@@ -19,7 +19,7 @@ export async function getServerSideProps({ query }) {
   //Vypočítava indexy pre články, ktoré sa majú zobraziť na aktuálnej stránke.
   const startIndex = (page - 1) * pageSize;
   const endIndex = startIndex + pageSize;
-  const paginatedBlogs = sortedBlogs.slice(startIndex, endIndex);//Vytvára pole paginatedBlogs, ktoré obsahuje len články pre aktuálnu stránku.
+  const paginatedBlogs = sortedBlogs.slice(startIndex, endIndex);
 
   const totalPages = Math.ceil(sortedBlogs.length / pageSize);
 
@@ -40,7 +40,6 @@ export default function Home({ blogs, currentPage, totalPages }) {
         <header className='flex items-center justify-between mt-8 md:mt-16 mb-12'>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tighter leading-tight">Blog</h1>
         </header>
-        {/* <p className="text-sm text-gray-500 mb-2">Number of links: {blogs.length}</p> */}
         <main>
           <ul className="grid grid-cols-1 gap-16 lg:gap-28 md:grid-cols-2 md:my-16 my-8">
             {blogs.map((blog) => (

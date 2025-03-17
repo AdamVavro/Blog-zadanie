@@ -1,4 +1,3 @@
-// components/BlogListItem.js
 import Link from 'next/link';
 import { formatDate } from '../lib/utils';
 
